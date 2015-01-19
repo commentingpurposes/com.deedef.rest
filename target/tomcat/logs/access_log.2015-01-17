@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [17/Jan/2015:03:14:23 -0500] "GET /com.deedef.rest HTTP/1.1" 500 4452 http-bio-8080-exec-1 1275
+0:0:0:0:0:0:0:1 - - [17/Jan/2015:03:14:30 -0500] "GET /deedefSms HTTP/1.1" 404 - http-bio-8080-exec-2 0
