@@ -1,1 +1,5 @@
 0:0:0:0:0:0:0:1 - - [18/Jan/2015:21:47:28 -0500] "GET /com.deedef.rest/hi HTTP/1.1" 200 42 http-bio-8080-exec-1 332
+0:0:0:0:0:0:0:1 - - [18/Jan/2015:22:09:22 -0500] "GET /com.deedef.rest/hi HTTP/1.1" 200 42 http-bio-8080-exec-1 346
+0:0:0:0:0:0:0:1 - - [18/Jan/2015:22:09:24 -0500] "GET /com.deedef.rest/ HTTP/1.1" 404 967 http-bio-8080-exec-2 30
+0:0:0:0:0:0:0:1 - - [18/Jan/2015:22:10:17 -0500] "GET /com.deedef.rest/index.html HTTP/1.1" 404 967 http-bio-8080-exec-3 7
+0:0:0:0:0:0:0:1 - - [18/Jan/2015:22:10:21 -0500] "GET /com.deedef.rest/hi HTTP/1.1" 200 42 http-bio-8080-exec-4 5
