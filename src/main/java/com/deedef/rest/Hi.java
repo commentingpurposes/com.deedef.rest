@@ -4,9 +4,7 @@ import jconnection.Queries;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 /**
@@ -17,9 +15,9 @@ import javax.ws.rs.core.Response;
 public class Hi {
 
     @GET
-    @Produces("text/html")
+    @Produces("text/plain")
     public String hi(){
-        return "<h1>Hi</h1><p>I am awesome!</p>";
+        return "Hi, I am awesome!";
     }
 
     @Path("/everything")
@@ -58,6 +56,74 @@ public class Hi {
             result += "</tr>";
         }
 
+        result += "</tbody></table>";
+
+        return Response.ok(result).build();
+    }
+
+    @Path("/id/{id}")
+    @GET
+    @Produces("text/html")
+    public Response description(@PathParam("id") int id){
+        String result = "";
+        JSONArray array = new JSONArray();
+        JSONObject object = new JSONObject();
+
+        try{
+            Queries q = new Queries();
+            array = q.getDesc(id);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return Response.status(500).entity("Server was not able to process your request").build();
+        }
+
+        object = array.getJSONObject(0);
+
+        result = "<table border='1'>" +
+                "<thead>" +
+                "<tr>" +
+                "<th>Description</th>" +
+                "</tr>" +
+                "</thead>" +
+                "<tbody>";
+        result += "<tr>";
+        result += "<td>" + object.getString("desc") + "</td>";
+        result += "</tr>";
+        result += "</tbody></table>";
+
+        return Response.ok(result).build();
+    }
+
+    @GET
+    @Produces("text/html")
+    public Response nameAndLocation(@QueryParam("id") int id){
+        String result = "";
+        JSONArray array = new JSONArray();
+        JSONObject object = new JSONObject();
+
+        try{
+            Queries q = new Queries();
+            array = q.getNameAndLocation(id);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return Response.status(500).entity("Server was not able to process your request").build();
+        }
+
+        object = array.getJSONObject(0);
+
+        result = "<table border='1'>" +
+                "<thead>" +
+                "<tr>" +
+                "<th>Name</th><th>Location</th>" +
+                "</tr>" +
+                "</thead>" +
+                "<tbody>";
+        result += "<tr>";
+        result += "<td>" + object.getString("name") + "</td>";
+        result += "<td>" + object.getString("location") + "</td>";
+        result += "</tr>";
         result += "</tbody></table>";
 
         return Response.ok(result).build();
